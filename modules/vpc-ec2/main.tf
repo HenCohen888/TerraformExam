@@ -43,12 +43,8 @@ resource "aws_route_table" "private_rt" {
 
 resource "aws_route_table_association" "private_assoc" {
   count          = length(var.private_subnet_cidr)
-  subnet_id      = aws_subnet.public[count.index].id
+  subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private_rt.id
-}
-
-resource "aws_route_table" "private_rt" {
-  vpc_id = aws_vpc.vpc.id
 }
 
 #AMI Ubuntu 24.04
@@ -58,7 +54,7 @@ data "aws_ami" "ubuntu_2204" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
   filter {
     name   = "virtualization-type"
