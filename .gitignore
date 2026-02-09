@@ -1,11 +1,7 @@
 # Terraform
-#.terraform/
-#*.tfstate
-#*.tfstate.*
+.terraform/
+*.tfstate.backup
 .terraform.lock.hcl
-
-# Crash logs
-crash.log
 
 # OS / editor
 .DS_Store
